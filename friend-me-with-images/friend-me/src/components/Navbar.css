@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 70px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+}
+.navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+.navbar-links {
+  display: flex;
+  gap: 32px;
+}
+.navbar-links a {
+  text-decoration: none;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.navbar-links a:hover, .navbar-links a.active { color: var(--black); }
+.navbar-links a.active { border-bottom: 2px solid var(--pink); padding-bottom: 2px; }
+.navbar-actions { display: flex; align-items: center; gap: 12px; }
+.navbar-user { font-size: 14px; color: var(--gray); }
