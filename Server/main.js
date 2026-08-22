@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors"); 
+const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
 async function dbconnection(){
     try{
@@ -19,6 +20,8 @@ main.use("/api/dogs", require("./routes/dogRoutes"));
 main.use("/api/users", require("./routes/userRoutes"));
 main.use("/api/adoptions", require("./routes/adoptionRoutes"));
 main.use("/api/products", require("./routes/productRoutes"));
+main.use(notFound);
+main.use(errorHandler);
 
 const port = process.env.PORT || 3000;
 main.listen(port,() => {
