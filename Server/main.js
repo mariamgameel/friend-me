@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors"); 
 const helmet = require("helmet");
+const cookieParser = require("cookie-parser");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const sanitize = require("./middlewares/sanitize");
 const { generalLimiter } = require("./middlewares/rateLimiter");
@@ -25,6 +26,7 @@ main.use(cors({
     credentials: true
 })); 
 main.use(express.json({ limit: "10kb" }));
+main.use(cookieParser());
 main.use(sanitize);
 main.use(generalLimiter);
 

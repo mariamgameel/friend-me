@@ -4,16 +4,30 @@ import { getAllDogs } from "../api/dogs";
 import "./Home.css";
 
 export default function Home() {
-  const [stats, setStats] = useState({ total: 0, adopted: 0 });
+  const [stats, setStats] = useState({ total: 0, adopted: 0, vaccinated: 0 });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [featured, setFeatured] = useState(null);
 
   useEffect(() => {
-    getAllDogs().then(res => {
-      const dogs = res.data;
-      setStats({ total: dogs.length, adopted: dogs.filter(d => d.isAdopted).length });
-      const available = dogs.filter(d => !d.isAdopted);
-      if (available.length) setFeatured(available[0]);
-    }).catch(() => {});
+    getAllDogs()
+      .then((dogs) => {
+        const list = Array.isArray(dogs) ? dogs : dogs?.data || [];
+        const total = list.length;
+        const adopted = list.filter((d) => d.isAdopted).length;
+        const vaccinated = list.filter(
+          (d) => d.vaccinated || (d.healthStatus && /vaccin/i.test(d.healthStatus))
+        ).length;
+        setStats({ total, adopted, vaccinated });
+        const available = list.filter((d) => !d.isAdopted);
+        if (available.length) setFeatured(available[0]);
+      })
+      .catch(() => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   return (
@@ -58,17 +72,29 @@ export default function Home() {
 
           <div className="stats-bar">
             <div className="stat">
-              <strong>{stats.total - stats.adopted || 236}</strong>
+              {loading ? (
+                <div className="stat-skeleton" />
+              ) : (
+                <strong>{error ? "—" : stats.total - stats.adopted}</strong>
+              )}
               <span>waiting for home</span>
             </div>
             <div className="stat-divider" />
             <div className="stat">
-              <strong>{stats.adopted || 128}</strong>
-              <span>adopted last year</span>
+              {loading ? (
+                <div className="stat-skeleton" />
+              ) : (
+                <strong>{error ? "—" : stats.adopted}</strong>
+              )}
+              <span>adopted dogs</span>
             </div>
             <div className="stat-divider" />
             <div className="stat">
-              <strong>5</strong>
+              {loading ? (
+                <div className="stat-skeleton" />
+              ) : (
+                <strong>{error ? "—" : stats.vaccinated}</strong>
+              )}
               <span>vaccinated</span>
             </div>
           </div>
@@ -87,6 +113,10 @@ export default function Home() {
           <p>Find everything your dog needs — from food to toys — in our curated pet store.</p>
           <Link to="/shop"><button className="btn-dark">Visit Shop</button></Link>
         </div>
+      </section>
+
+      <section id="contact" className="contact-preview-section page-container">
+        {/* Contact section placeholder anchor for B8, expanded in Phase 3 */}
       </section>
     </div>
   );

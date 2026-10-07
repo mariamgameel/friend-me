@@ -9,7 +9,7 @@ const registerUser = catchAsync(async (req, res) => {
     const { username, email, password } = req.body;
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({ username, email, password: hashedPassword, role });
+    const user = await User.create({ username, email, password: hashedPassword, role: "user" });
     const userResponse = user.toObject();
     delete userResponse.password;
     res.status(201).json({ success: true, data: userResponse });
@@ -35,8 +35,10 @@ const loginUser = catchAsync(async (req, res, next) => {
     );
     res.status(200).json({
         success: true,
-        token,
-        user: { id: user._id, username: user.username, role: user.role }
+        data: {
+            token,
+            user: { id: user._id, username: user.username, role: user.role }
+        }
     });
 });
 

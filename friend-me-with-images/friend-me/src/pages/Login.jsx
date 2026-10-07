@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { getErrorMessage } from "../utils/error";
 import "./Auth.css";
 
 export default function Login() {
@@ -17,7 +18,7 @@ export default function Login() {
       const user = await login(form);
       navigate(user.role === "admin" ? "/admin" : "/");
     } catch (err) {
-      setError(err.response?.data?.msg || "Login failed.");
+      setError(getErrorMessage(err, "Login failed."));
     } finally { setLoading(false); }
   };
 
