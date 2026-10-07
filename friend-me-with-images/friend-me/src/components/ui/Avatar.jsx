@@ -55,3 +55,5 @@ export function Spinner({ size = 32, className = "" }) {
     />
   );
 }
+
+export default Avatar;

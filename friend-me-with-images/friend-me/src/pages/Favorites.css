@@ -1,0 +1,112 @@
+.favorites-page {
+  padding-top: 36px;
+  padding-bottom: 72px;
+}
+
+.favorites-header {
+  margin-bottom: 32px;
+}
+
+.favorites-header h1 {
+  font-size: var(--font-3xl);
+  margin-bottom: 6px;
+}
+
+.favorites-header p {
+  color: var(--gray);
+  font-size: var(--font-base);
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.fav-dog-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.fav-dog-img-box {
+  width: 100%;
+  height: 220px;
+  background: var(--surface-alt);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.fav-dog-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fav-remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition-fast);
+}
+
+.fav-remove-btn:hover {
+  transform: scale(1.1);
+}
+
+.fav-dog-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.fav-dog-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.fav-dog-top h3 {
+  font-size: var(--font-xl);
+  margin: 0;
+}
+
+.fav-dog-meta {
+  color: var(--gray);
+  font-size: var(--font-xs);
+  margin-bottom: 10px;
+}
+
+.fav-dog-badges {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.fav-dog-desc {
+  color: var(--gray);
+  font-size: var(--font-sm);
+  line-height: 1.5;
+  margin-bottom: 18px;
+  flex: 1;
+}
+
+.fav-dog-action {
+  margin-top: auto;
+}

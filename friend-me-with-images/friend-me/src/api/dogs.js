@@ -1,5 +1,7 @@
 import api from "./axios";
-export const getAllDogs = () => api.get("/dogs");
+
+export const getAllDogs = (params) => api.get("/dogs", { params });
+export const getBreeds = () => api.get("/dogs/breeds");
 export const getDogById = (id) => api.get(`/dogs/${id}`);
 export const createDog = (data) => api.post("/dogs", data);
 export const updateDog = (id, data) => api.put(`/dogs/${id}`, data);

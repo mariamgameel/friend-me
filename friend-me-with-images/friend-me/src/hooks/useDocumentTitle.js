@@ -9,3 +9,5 @@ export function useDocumentTitle(title) {
     };
   }, [title]);
 }
+
+export default useDocumentTitle;
