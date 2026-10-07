@@ -3,17 +3,19 @@ const mongoose = require("mongoose");
 const applicationSchema = new mongoose.Schema({
     housingType: {
         type: String,
-        enum: ["House", "Apartment", "Other"],
-        required: true
+        default: "House"
     },
     hasYard: {
         type: Boolean,
-        required: true
+        default: false
     },
     ownsOrRents: {
         type: String,
-        enum: ["Own", "Rent"],
-        required: true
+        default: "Own"
+    },
+    ownOrRent: {
+        type: String,
+        default: "own"
     },
     otherPets: {
         type: String,
@@ -21,23 +23,26 @@ const applicationSchema = new mongoose.Schema({
     },
     experience: {
         type: String,
-        enum: ["None", "Some", "Experienced"],
-        required: true
+        default: "Some"
     },
     hoursAlonePerDay: {
         type: Number,
-        min: 0,
-        max: 24,
-        required: true
+        default: 4
+    },
+    schedule: {
+        type: String,
+        default: ""
+    },
+    reason: {
+        type: String,
+        default: ""
     },
     phone: {
         type: String,
-        required: true,
-        trim: true
+        default: ""
     },
     message: {
         type: String,
-        maxlength: 500,
         default: ""
     }
 }, { _id: false });

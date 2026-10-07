@@ -91,7 +91,7 @@ const dogSchema = new mongoose.Schema(
 );
 
 // Synchronize legacy `image` with `images[0]`
-dogSchema.pre("save", function (next) {
+dogSchema.pre("save", function () {
     if (Array.isArray(this.images) && this.images.length > 0) {
         if (!this.image) {
             this.image = this.images[0];
@@ -99,7 +99,6 @@ dogSchema.pre("save", function (next) {
     } else if (this.image) {
         this.images = [this.image];
     }
-    next();
 });
 
 dogSchema.index({ name: 1 });

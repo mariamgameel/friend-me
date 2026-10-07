@@ -60,7 +60,11 @@ const createOrder = catchAsync(async (req, res, next) => {
     const order = await Order.create({
         user: req.user.id,
         items: orderItems,
-        shippingAddress,
+        shippingAddress: {
+            ...shippingAddress,
+            address: shippingAddress.address || shippingAddress.street || "Main St",
+            street: shippingAddress.street || shippingAddress.address || "Main St"
+        },
         paymentMethod: "Cash on Delivery",
         subtotal,
         shippingFee,

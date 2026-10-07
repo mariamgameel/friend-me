@@ -9,7 +9,8 @@ const registerSchema = Joi.object({
         .required()
         .messages({
             "string.pattern.base": "Password must contain at least one letter and one number"
-        })
+        }),
+    role: Joi.string().optional()
 });
 
 const loginSchema = Joi.object({
