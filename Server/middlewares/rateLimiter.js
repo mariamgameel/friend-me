@@ -16,4 +16,12 @@ const authLimiter = rateLimit({
     legacyHeaders: false
 });
 
-module.exports = { generalLimiter, authLimiter };
+const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: { success: false, message: "Too many messages sent. Please wait a while before contacting us again." },
+    standardHeaders: true,
+    legacyHeaders: false
+});
+
+module.exports = { generalLimiter, authLimiter, contactLimiter };

@@ -7,6 +7,7 @@ const auth = require("../middlewares/authMiddleware");
 const isAdmin = require("../middlewares/roleMiddleware");
 
 router.get("/", dogController.getAllDogs);
+router.get("/breeds", dogController.getDistinctBreeds);
 router.get("/:id", dogController.getDogById);
 router.post("/", auth, isAdmin, validate(createDogSchema), dogController.createDog);
 router.put("/:id", auth, isAdmin, validate(updateDogSchema), dogController.updateDog);

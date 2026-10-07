@@ -11,11 +11,13 @@
     "joi": "^18.1.1",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.2.3",
-    "multer": "^2.1.1"
+    "multer": "^2.1.1",
+    "nodemailer": "^10.0.16"
   },
   "scripts": {
     "start": "node main.js",
     "seed:products": "node seed/seedProducts.js",
-    "seed:admin": "node seed/seedAdmin.js"
+    "seed:admin": "node seed/seedAdmin.js",
+    "seed:dogs": "node seed/seedDogs.js"
   }
 }
